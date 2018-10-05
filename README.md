@@ -63,17 +63,67 @@ Each frame would be handled by a `Frame` class which takes each `roll` and decid
 
 Initial plan was for a `Roll` class which handled each roll however this may be removed.
 
+### User Stories
+
+Reminder to produce stories came from [Freya](https://github.com/fbl11) when discussing the challenge.
+```
+As a player,
+So that I can keep a record of my scores,
+I want to be able to add a score for a roll.
+```
+```
+As a player,
+So that I don't need to remember how well I am doing,
+I want to see a record of my previous rolls.
+```
+```
+As a player,
+So that I know how long I have been playing,
+I want to see the number of frames I have rolled.
+```
+```
+As a player,
+So that I know how long I have left,
+I want to see how many frames are in the game.
+```
+```
+As a player,
+So that I know how I am doing,
+I want to see my total.
+```
+```
+As a good player,
+So that my score calculates correctly,
+I want to see bonus points added for a spare.
+```
+```
+As a good player,
+So that my score calculates correctly,
+I want to see bonus points added for a strike.
+```
+```
+As a good player,
+So that my score calculates correctly,
+I want to be able to add an extra roll score after a spare or strike in the 10th frame.
+```
+```
+As an excellent player,
+So that I can show off to my friends,
+I want to be able to enter a perfect game and have the app confirm it.
+```
 ## Built With
 
 * [JavaScript](https://developer.mozilla.org/bm/docs/Web/JavaScript) - Logic
 * [HTML](https://www.w3schools.com/html/) - Webpage Layout
 * [JQuery](https://jquery.com/) - Web Framework Used
 * [Jasmine](https://jasmine.github.io/) - Testing Suite
+* [Jasmine-Matchers](https://github.com/JamieMason/Jasmine-Matchers) - Custom Jasmine Matcher Library
 * [ESLint](https://eslint.org/) - JavaScipt Linter
 
 ## Authors
 
-* **Patrick Harris** - [TinyGobby](https://github.com/TinyGobby)
+* **Patrick Harris** - Main Author - [TinyGobby](https://github.com/TinyGobby)
+* **Freya** - Idea for User Stories - [fbl11](https://github.com/fbl11)
 
 ## License
 
