@@ -1,14 +1,88 @@
+# Bowling Challenge
 
-Bowling Challenge
-=================
+A web app for bowling, the user inputs the scores on each bowl and the app sums them up and returns the score. Handles strikes, spares and the 10th frame. Should work for all games between a Gutter Game (20 zero scores) and a Perfect Game (12 strikes).#
 
+## Getting Started - TBC
 
-* Challenge time: rest of the day and weekend.
-* Feel free to use google, your notes, books, etc. but work on your own
-* If you refer to the solution of another coach or student, please put a link to that in your README
-* If you have a partial solution, **still check in a partial solution**
-* You must submit a pull request to this repo with your code by 9am Monday week
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### Prerequisites - TBC
+
+What things you need to install the software and how to install them
+
+```
+Give examples
+```
+
+### Installing - TBC
+
+A step by step series of examples that tell you how to get a development env running
+
+Say what the step will be
+
+```
+Give the example
+```
+
+And repeat
+
+```
+until finished
+```
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Open SpecRunner.html in your favourite browser.
+
+### Break down into end to end tests - TBC
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests - TBC
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Thought Process
+
+### Initial Planning
+TODO: Add photo of whiteboard plans
+
+Initial conception was for a `Total` class which takes numbers from each `frame` and sums them up, returning them to the screen (once interface added).
+
+Each frame would be handled by a `Frame` class which takes each `roll` and decides whether another roll is required, then passing the frame total to the total class to present to the screen.
+
+Initial plan was for a `Roll` class which handled each roll however this may be removed.
+
+## Built With
+
+* [JavaScript](https://developer.mozilla.org/bm/docs/Web/JavaScript) - Logic
+* [HTML](https://www.w3schools.com/html/) - Webpage Layout
+* [JQuery](https://jquery.com/) - Web Framework Used
+* [Jasmine](https://jasmine.github.io/) - Testing Suite
+* [ESLint](https://eslint.org/) - JavaScipt Linter
+
+## Authors
+
+* **Patrick Harris** - [TinyGobby](https://github.com/TinyGobby)
+
+## License
+
+This project is licensed under the MIT License - see the [MIT.LICENSE](MIT.LICENSE) file for details
+
+## Acknowledgments
+
+* [Makers Academy](http://makers.tech/) - Challenge set during week 5 of Makers Apprenticeships course. See below for original specification:
+----
 ## The Task
 
 **THIS IS NOT A BOWLING GAME, IT IS A BOWLING SCORECARD. DO NOT GENERATE RANDOM ROLLS. THE USER INPUTS THE ROLLS.**
