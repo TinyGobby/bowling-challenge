@@ -34,15 +34,22 @@ describe('Game', function() {
   });
 
   describe('total', function () {
-    it('returns one score added', function () {
+    it('returns total for one score', function () {
       game.addScore(1);
       expect(game.total()).toEqual(1);
     });
 
-    it('returns two scores added', function () {
+    it('returns total for two scores', function () {
       game.addScore(1);
       game.addScore(2);
       expect(game.total()).toEqual(3);
+    });
+
+    it('returns total for multiple frames', function () {
+      game.addScore(1);
+      game.addScore(2);
+      game.addScore(3);
+      expect(game.total()).toEqual(6);
     });
   });
 });

@@ -9,9 +9,9 @@ function Game() {
 };
 
 Game.prototype.addScore = function(value) {
-  this.frames[this._frameCounter].add(this._toCorrectKey(), value);
+  this._correctFrame().add(this._toCorrectKey(), value);
   this._updateKey();
-  if(this._key === 0) { this._frameCounter++ };
+  if(this._key === 0) { this._updateFrame() };
 };
 
 Game.prototype.total = function () {
@@ -40,4 +40,12 @@ Game.prototype._toCorrectKey = function () {
 
 Game.prototype._updateKey = function () {
   this._key = this._key === 0 ? 1 : 0;
+};
+
+Game.prototype._correctFrame = function () {
+  return this.frames[this._frameCounter];
+};
+
+Game.prototype._updateFrame = function () {
+  this._frameCounter++;
 };
