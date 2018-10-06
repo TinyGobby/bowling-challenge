@@ -7,6 +7,9 @@ function Frame(frameNumber) {
 };
 
 Frame.prototype.add = function (key, value) {
+  if(this._isRoll2(key) && this._isTooHigh(value)) {
+    throw new Error('Second roll too high');
+  };
   this.information.set(key, value);
 };
 
@@ -29,4 +32,12 @@ Frame.prototype._setup = function (frameNumber) {
 
 Frame.prototype._getValue = function (key) {
   return this.information.get(key);
+};
+
+Frame.prototype._isRoll2 = function (key) {
+  return key === 'roll2';
+};
+
+Frame.prototype._isTooHigh = function (value) {
+  return (this._getValue('roll1') + value) > 10
 };
