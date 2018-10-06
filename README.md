@@ -34,7 +34,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Open SpecRunner.html in your favourite browser.
+Open [SpecRunner](SpecRunner.html) in your favourite browser.
 
 ### Break down into end to end tests - TBC
 
@@ -92,6 +92,11 @@ So that I know how I am doing,
 I want to see my total.
 ```
 ```
+As a player,
+So that my scores are correct,
+I want to be notified when I put too high a score in.
+```
+```
 As a good player,
 So that my score calculates correctly,
 I want to see bonus points added for a spare.
@@ -109,7 +114,7 @@ I want to be able to add an extra roll score after a spare or strike in the 10th
 ```
 As an excellent player,
 So that I can show off to my friends,
-I want to be able to enter a perfect game and have the app confirm it.
+I want to be able to score a perfect game and have the app confirm it.
 ```
 ## Built With
 
