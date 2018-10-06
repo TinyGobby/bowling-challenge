@@ -1,10 +1,10 @@
 'use strict';
 
 describe('Frame', function () {
-  var frame
+  let frame;
 
   beforeEach(function () {
-    frame = new Frame();
+    frame = new Frame(0);
   });
 
   describe('#total', function () {

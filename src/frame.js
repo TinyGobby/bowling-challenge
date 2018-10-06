@@ -1,8 +1,9 @@
 'use strict';
 
-function Frame() {
+// holds each frame information: rolls, bonus amounts and totals
+function Frame(frameNumber) {
   this.information = new Map();
-  this._setup();
+  this._setup(frameNumber);
 };
 
 Frame.prototype.add = function (key, value) {
@@ -18,8 +19,8 @@ Frame.prototype.total = function () {
   return total;
 };
 
-Frame.prototype._setup = function () {
-  this.add('frame_number', 0);
+Frame.prototype._setup = function (frameNumber) {
+  this.add('frame_number', frameNumber);
   this.add('roll1', 0);
   this.add('roll2', 0);
   this.add('bonus1', 0);
