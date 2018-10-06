@@ -24,7 +24,6 @@ describe('Frame', function () {
     });
   });
 
-
   describe('#roll', function () {
     // As a player,
     // So that I can keep a record of my scores,
