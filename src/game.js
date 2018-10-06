@@ -3,13 +3,15 @@
 function Game() {
   this.frames = [];
   this._addEmptyFrames();
-  this._possibleKeys = ['roll1', 'roll2']
-  this._key = 0
+  this._possibleKeys = ['roll1', 'roll2'];
+  this._key = 0;
+  this._frameCounter = 0;
 };
 
 Game.prototype.addScore = function(value) {
-  this.frames[0].add(this._toCorrectKey(), value);
+  this.frames[this._frameCounter].add(this._toCorrectKey(), value);
   this._updateKey();
+  if(this._key === 0) { this._frameCounter++ };
 };
 
 Game.prototype.total = function () {
@@ -34,8 +36,8 @@ Game.prototype._frameTotal = function (frame) {
 
 Game.prototype._toCorrectKey = function () {
   return this._possibleKeys[this._key];
-}
+};
 
 Game.prototype._updateKey = function () {
   this._key = this._key === 0 ? 1 : 0;
-}
+};
