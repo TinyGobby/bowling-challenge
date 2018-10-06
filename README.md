@@ -55,17 +55,22 @@ Give an example
 ## Thought Process
 
 ### Initial Planning
-TODO: Add photo of whiteboard plans
 
-Initial conception was for a `Total` class which takes numbers from each `frame` and sums them up, returning them to the screen (once interface added).
+![whiteboard](https://i.imgur.com/NKNNdZ6.jpg)
 
-Each frame would be handled by a `Frame` class which takes each `roll` and decides whether another roll is required, then passing the frame total to the total class to present to the screen.
+### App Structure
 
-Initial plan was for a `Roll` class which handled each roll however this may be removed.
+The bowling challenge works through a central `Game` object which instatiates and stores each `Frame` object. It controls the flow of the game and checks for bonuses, passing score information to the `Frame` objects.
+
+The `Frame` objects hold scores for each frame and provide error correction.
+
+#### TODO:
+
+* Extract bonuses into separate object
 
 ### User Stories
 
-Reminder to produce stories came from [Freya](https://github.com/fbl11) when discussing the challenge.
+Reminder to produce stories came from [Freya](https://github.com/fbl11) when discussing the challenge during planning stages.
 ```
 As a player,
 So that I can keep a record of my scores,
@@ -116,6 +121,7 @@ As an excellent player,
 So that I can show off to my friends,
 I want to be able to score a perfect game and have the app confirm it.
 ```
+
 ## Built With
 
 * [JavaScript](https://developer.mozilla.org/bm/docs/Web/JavaScript) - Logic
@@ -136,7 +142,7 @@ This project is licensed under the MIT License - see the [MIT.LICENSE](MIT.LICEN
 
 ## Acknowledgments
 
-* [Makers Academy](http://makers.tech/) - Challenge set during week 5 of Makers Apprenticeships course. See below for original specification:
+* [Makers Academy](http://makers.tech/) - Challenge set during week 5 of Makers Apprenticeships course. See below for verbatim original specification:
 ----
 ## The Task
 

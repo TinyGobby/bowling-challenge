@@ -14,12 +14,12 @@ Game.prototype.addScore = function(score) {
   if(this._roll === 0) { this._updateFrame() };
 };
 
-Game.prototype.total = function () {
+Game.prototype.calculateTotal = function () {
   let total = 0;
   let framesLength = this.frames.length;
 
   for (let i = 0; i < framesLength; i++) {
-    total += this.frames[i].total();
+    total += this.frames[i].calculateFrameTotal();
   };
   return total;
 };
