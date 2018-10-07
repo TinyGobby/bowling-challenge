@@ -25,11 +25,30 @@ describe('Game', function() {
       expect(game.frames[0].information.get('roll2')).toEqual(2);
     });
 
-    it('automatically adds the score to the next frame', function () {
+    it('automatically changes frame after two rolls', function () {
       game.addScore(1);
       game.addScore(2);
       game.addScore(3);
       expect(game.frames[1].information.get("roll1")).toEqual(3);
+    });
+
+    it('automatically changes frame after a strike', function () {
+      game.addScore(10);
+      game.addScore(1);
+      expect(game.frames[1].information.get('roll1')).toEqual(1);
+    });
+
+    it('adds a bonus on spares', function () {
+      game.addScore(1);
+      game.addScore(9);
+      game.addScore(2);
+      expect(game.frames[0].information.get('bonus')).toEqual(2);
+    });
+
+    xit('adds a bonus on strikes', function () {
+      game.addScore(10);
+      game.addScore(1);
+      expect(game.frames[0].information.get('bonus')).toEqual(1);
     });
   });
 

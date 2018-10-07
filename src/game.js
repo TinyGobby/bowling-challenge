@@ -9,9 +9,20 @@ function Game() {
 };
 
 Game.prototype.addScore = function(score) {
-  this._correctFrame().add(this._correctRoll(), score);
+  this._currentFrame().add(this._currentRoll(), score);
   this._updateRoll();
-  if(this._roll === 0) { this._updateFrame() };
+
+  if (this._currentFrame().calculateFrameTotal() === 10) {
+    this._currentFrame().add('bonusCounter', 1);
+  };
+
+  if (this._frameCounter > 0) {
+    if (this.frames[this._frameCounter-1].information.get('bonusCounter') > 0) {
+      this.frames[this._frameCounter - 1].add('bonus', score);
+    };
+  };
+
+  if (this._roll === 0) { this._updateFrame() };
 };
 
 Game.prototype.calculateTotal = function () {
@@ -30,7 +41,7 @@ Game.prototype._addEmptyFrames = function () {
   };
 };
 
-Game.prototype._correctRoll = function () {
+Game.prototype._currentRoll = function () {
   return this._possibleRolls[this._roll];
 };
 
@@ -38,7 +49,7 @@ Game.prototype._updateRoll = function () {
   this._roll = this._roll === 0 ? 1 : 0;
 };
 
-Game.prototype._correctFrame = function () {
+Game.prototype._currentFrame = function () {
   return this.frames[this._frameCounter];
 };
 

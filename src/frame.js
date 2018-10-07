@@ -29,6 +29,7 @@ Frame.prototype._setup = function (frameNumber) {
   this.add('roll1', 0);
   this.add('roll2', 0);
   this.add('bonus', 0);
+  this.add('bonusCounter', 0);
 };
 
 Frame.prototype._getScore = function (score) {
