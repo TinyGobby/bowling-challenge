@@ -1,5 +1,3 @@
-
-
 describe('Game', () => {
   let game;
 
@@ -61,11 +59,7 @@ describe('Game', () => {
     it('adds a second bonus on double strike', () => {
       game.addScore(10);
       game.addScore(10);
-      console.log(game.frames[0].information.get('bonus'));
       game.addScore(1);
-      console.log(game.frames[0].information.get('bonus'));
-      console.log(game.frames[1].information.get('bonus'));
-      console.log(game.frames[2].information.get('bonus'));
       expect(game.frames[0].information.get('bonus')).toEqual(11);
     });
 

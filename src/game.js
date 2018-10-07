@@ -1,24 +1,21 @@
-
-
 function Game() {
   this.frames = [];
   this._addEmptyFrames();
-  this._possibleRolls = ['roll1', 'roll2'];
-  this._roll = 0;
+  this._roll = 'roll1';
   this._frameCounter = 0;
-}
+};
 
 Game.prototype.addScore = function (score) {
-  this._currentFrame().add(this._currentRoll(), score);
+  this._currentFrame().add(this._roll, score);
 
   for (let i = 1; i < 3; i++) {
-    if ((this._frameCounter - i) > -1) {
-      if (this.frames[this._frameCounter - i].information.get('bonusCounter') > 0) {
-        this.frames[this._frameCounter - i].update('bonus', score);
-        this.frames[this._frameCounter - i].update('bonusCounter', -1);
-      }
-    }
-  }
+    if (this._isValidFrame(i)) {
+      if (this._frameMinus(i).information.get('bonusCounter') > 0) {
+        this._frameMinus(i).update('bonus', score);
+        this._frameMinus(i).update('bonusCounter', -1);
+      };
+    };
+  };
 
   if (this._isStrike(score)) {
     this._currentFrame().add('bonusCounter', 2);
@@ -26,12 +23,10 @@ Game.prototype.addScore = function (score) {
     return;
   } if (this._isSpare()) {
     this._currentFrame().add('bonusCounter', 1);
-  }
+  };
 
   this._updateRoll();
-  if (this._roll === 0) {
-    this._updateFrame();
-  }
+  if (this._roll === 'roll1') this._updateFrame();
 };
 
 Game.prototype.calculateTotal = function () {
@@ -40,22 +35,18 @@ Game.prototype.calculateTotal = function () {
 
   for (let i = 0; i < framesLength; i++) {
     total += this.frames[i].calculateFrameTotal();
-  }
+  };
   return total;
 };
 
 Game.prototype._addEmptyFrames = function () {
   for (let i = 1; i < 11; i++) {
     this.frames.push(new Frame(i));
-  }
-};
-
-Game.prototype._currentRoll = function () {
-  return this._possibleRolls[this._roll];
+  };
 };
 
 Game.prototype._updateRoll = function () {
-  this._roll = this._roll === 0 ? 1 : 0;
+  this._roll = this._roll === 'roll1' ? 'roll2' : 'roll1';
 };
 
 Game.prototype._currentFrame = function () {
@@ -71,9 +62,17 @@ Game.prototype._isSpare = function () {
 };
 
 Game.prototype._isStrike = function (score) {
-  return this._roll === 0 && score == 10;
+  return this._roll === 'roll1' && score == 10;
 };
 
 Game.prototype._previousBonusCounter = function () {
   return this._previousFrame().information.get('bonusCounter');
+};
+
+Game.prototype._frameMinus = function (i) {
+  return this.frames[this._frameCounter - i];
+};
+
+Game.prototype._isValidFrame = function (i) {
+  return this._frameCounter - i > -1;
 };
