@@ -67,6 +67,8 @@ The `Frame` objects hold scores for each frame and provide error correction.
 #### TODO:
 
 * Extract bonuses into separate object
+* Break up Game.addScore() into multiple separate functions or objects
+* Refactor game.frames[i].information.get(something) in gameSpec
 
 ### User Stories
 

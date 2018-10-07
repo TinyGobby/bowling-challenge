@@ -1,4 +1,4 @@
-'use strict';
+
 
 function Game() {
   this.frames = [];
@@ -6,43 +6,48 @@ function Game() {
   this._possibleRolls = ['roll1', 'roll2'];
   this._roll = 0;
   this._frameCounter = 0;
-};
+}
 
-Game.prototype.addScore = function(score) {
+Game.prototype.addScore = function (score) {
   this._currentFrame().add(this._currentRoll(), score);
-  
-  if (this._roll === 0 && score == 10) {
+
+  for (let i = 1; i < 3; i++) {
+    if ((this._frameCounter - i) > -1) {
+      if (this.frames[this._frameCounter - i].information.get('bonusCounter') > 0) {
+        this.frames[this._frameCounter - i].update('bonus', score);
+        this.frames[this._frameCounter - i].update('bonusCounter', -1);
+      }
+    }
+  }
+
+  if (this._isStrike(score)) {
     this._currentFrame().add('bonusCounter', 2);
     this._updateFrame();
     return;
-  } else if (this._isSpare()) {
+  } if (this._isSpare()) {
     this._currentFrame().add('bonusCounter', 1);
-  };
+  }
+
   this._updateRoll();
-
-  if (this._frameCounter > 0) {
-    if (this.frames[this._frameCounter-1].information.get('bonusCounter') > 0) {
-      this.frames[this._frameCounter - 1].add('bonus', score);
-    };
-  };
-
-  if (this._roll === 0) { this._updateFrame() };
+  if (this._roll === 0) {
+    this._updateFrame();
+  }
 };
 
 Game.prototype.calculateTotal = function () {
   let total = 0;
-  let framesLength = this.frames.length;
+  const framesLength = this.frames.length;
 
   for (let i = 0; i < framesLength; i++) {
     total += this.frames[i].calculateFrameTotal();
-  };
+  }
   return total;
 };
 
 Game.prototype._addEmptyFrames = function () {
   for (let i = 1; i < 11; i++) {
     this.frames.push(new Frame(i));
-  };
+  }
 };
 
 Game.prototype._currentRoll = function () {
@@ -62,5 +67,13 @@ Game.prototype._updateFrame = function () {
 };
 
 Game.prototype._isSpare = function () {
-  return this._currentFrame().calculateFrameTotal() === 10
+  return this._currentFrame().calculateFrameTotal() === 10;
+};
+
+Game.prototype._isStrike = function (score) {
+  return this._roll === 0 && score == 10;
+};
+
+Game.prototype._previousBonusCounter = function () {
+  return this._previousFrame().information.get('bonusCounter');
 };

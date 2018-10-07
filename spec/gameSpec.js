@@ -1,70 +1,95 @@
-'use strict';
 
-describe('Game', function() {
+
+describe('Game', () => {
   let game;
 
-  beforeEach(function() {
+  beforeEach(() => {
     game = new Game();
   });
 
-  describe('frames', function () {
-    it('initialises with ten frames', function () {
+  describe('frames', () => {
+    it('initialises with ten frames', () => {
       expect(game.frames).toBeArrayOfSize(10);
     });
-  });  
+  });
 
-  describe('#addScore', function () {
-    it('adds a score to a frame', function () {
+  describe('#addScore', () => {
+    it('adds a score to a frame', () => {
       game.addScore(1);
       expect(game.frames[0].information.get('roll1')).toEqual(1);
     });
 
-    it('automatically adds the score to roll2 on the frame', function () {
+    it('automatically adds the score to roll2 on the frame', () => {
       game.addScore(1);
       game.addScore(2);
       expect(game.frames[0].information.get('roll2')).toEqual(2);
     });
 
-    it('automatically changes frame after two rolls', function () {
+    it('automatically changes frame after two rolls', () => {
       game.addScore(1);
       game.addScore(2);
       game.addScore(3);
-      expect(game.frames[1].information.get("roll1")).toEqual(3);
+      expect(game.frames[1].information.get('roll1')).toEqual(3);
     });
 
-    it('automatically changes frame after a strike', function () {
+    it('automatically changes frame after a strike', () => {
       game.addScore(10);
       game.addScore(1);
       expect(game.frames[1].information.get('roll1')).toEqual(1);
     });
 
-    it('adds a bonus on spares', function () {
+    it('adds a bonus on spares', () => {
       game.addScore(1);
       game.addScore(9);
       game.addScore(2);
       expect(game.frames[0].information.get('bonus')).toEqual(2);
     });
 
-    it('adds a bonus on strikes', function () {
+    it('adds a bonus on strikes', () => {
       game.addScore(10);
       game.addScore(1);
       expect(game.frames[0].information.get('bonus')).toEqual(1);
     });
+
+    it('adds a second bonus on strikes', () => {
+      game.addScore(10);
+      game.addScore(1);
+      game.addScore(2);
+      expect(game.frames[0].information.get('bonus')).toEqual(3);
+    });
+
+    it('adds a second bonus on double strike', () => {
+      game.addScore(10);
+      game.addScore(10);
+      console.log(game.frames[0].information.get('bonus'));
+      game.addScore(1);
+      console.log(game.frames[0].information.get('bonus'));
+      console.log(game.frames[1].information.get('bonus'));
+      console.log(game.frames[2].information.get('bonus'));
+      expect(game.frames[0].information.get('bonus')).toEqual(11);
+    });
+
+    it('works with three strikes', () => {
+      game.addScore(10);
+      game.addScore(10);
+      game.addScore(10);
+      expect(game.frames[0].information.get('bonus')).toEqual(20);
+    });
   });
 
-  describe('#calculateTotal', function () {
-    it('returns total for one score', function () {
+  describe('#calculateTotal', () => {
+    it('returns total for one score', () => {
       game.addScore(1);
       expect(game.calculateTotal()).toEqual(1);
     });
 
-    it('returns total for two scores', function () {
+    it('returns total for two scores', () => {
       game.addScore(1);
       game.addScore(2);
       expect(game.calculateTotal()).toEqual(3);
     });
 
-    it('returns total for multiple frames', function () {
+    it('returns total for multiple frames', () => {
       game.addScore(1);
       game.addScore(2);
       game.addScore(3);

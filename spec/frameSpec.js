@@ -35,4 +35,18 @@ describe('Frame', function () {
       expect(function() { frame.add('roll1', 'test') } ).toThrowError('Incorrect input, please give a number between 0 and 10');
     });
   });
+
+  describe('#update', function () {
+    it('updates a specific key', function() {
+      frame.add('bonus', 5)
+      frame.update('bonus', 5)
+      expect(frame.information.get('bonus')).toEqual(10);
+    });
+
+    it('works with a negative number', function () {
+      frame.add('bonus', 5)
+      frame.update('bonus', -4)
+      expect(frame.information.get('bonus')).toEqual(1);
+    });
+  });
 });

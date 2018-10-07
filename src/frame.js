@@ -16,6 +16,10 @@ Frame.prototype.add = function (roll, score) {
   this.information.set(roll, score);
 };
 
+Frame.prototype.update = function (key, value) {
+  this.information.set(key, (this.information.get(key) + value));
+};
+
 Frame.prototype.calculateFrameTotal = function() {
   let total = 0;
   total += this._getScore('roll1');
