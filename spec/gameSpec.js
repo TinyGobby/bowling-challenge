@@ -45,7 +45,7 @@ describe('Game', function() {
       expect(game.frames[0].information.get('bonus')).toEqual(2);
     });
 
-    xit('adds a bonus on strikes', function () {
+    it('adds a bonus on strikes', function () {
       game.addScore(10);
       game.addScore(1);
       expect(game.frames[0].information.get('bonus')).toEqual(1);

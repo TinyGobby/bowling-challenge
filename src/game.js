@@ -10,11 +10,15 @@ function Game() {
 
 Game.prototype.addScore = function(score) {
   this._currentFrame().add(this._currentRoll(), score);
-  this._updateRoll();
-
-  if (this._currentFrame().calculateFrameTotal() === 10) {
+  
+  if (this._roll === 0 && score == 10) {
+    this._currentFrame().add('bonusCounter', 2);
+    this._updateFrame();
+    return;
+  } else if (this._isSpare()) {
     this._currentFrame().add('bonusCounter', 1);
   };
+  this._updateRoll();
 
   if (this._frameCounter > 0) {
     if (this.frames[this._frameCounter-1].information.get('bonusCounter') > 0) {
@@ -55,4 +59,8 @@ Game.prototype._currentFrame = function () {
 
 Game.prototype._updateFrame = function () {
   this._frameCounter++;
+};
+
+Game.prototype._isSpare = function () {
+  return this._currentFrame().calculateFrameTotal() === 10
 };
