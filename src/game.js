@@ -31,7 +31,7 @@ Game.prototype.addScore = function (score) {
 
 Game.prototype.calculateTotal = function () {
   let total = 0;
-  const framesLength = this.frames.length;
+  let framesLength = this.frames.length;
 
   for (let i = 0; i < framesLength; i++) {
     total += this.frames[i].calculateFrameTotal();

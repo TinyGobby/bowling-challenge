@@ -1,8 +1,8 @@
 # Bowling Challenge
 
-A web app for bowling, the user inputs the scores on each bowl and the app sums them up and returns the score. Handles strikes, spares and the 10th frame. Should work for all games between a Gutter Game (20 zero scores) and a Perfect Game (12 strikes).#
+A web app for bowling, the user inputs the scores on each bowl and the app sums them up and returns the score. Handles strikes, spares and the 10th frame. Should work for all games between a Gutter Game (20 zero scores) and a Perfect Game (12 strikes).
 
-## Getting Started - TBC
+<!-- ## Getting Started - TBC
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -31,11 +31,11 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
-
+-->
 ## Running the tests
 
 Open [SpecRunner](SpecRunner.html) in your favourite browser.
-
+<!--
 ### Break down into end to end tests - TBC
 
 Explain what these tests test and why
@@ -50,7 +50,7 @@ Explain what these tests test and why
 
 ```
 Give an example
-```
+``` -->
 
 ## Thought Process
 
@@ -70,6 +70,7 @@ The `Frame` objects hold scores for each frame and provide error correction.
 * Break up Game.addScore() into multiple separate functions or objects
 * Refactor game.frames[i].information.get(something) in gameSpec (maybe into a spec helper?)
 * Refactor nested if statement in Game.addScore()
+* Complete logic for 10th frame
 
 ### User Stories
 
@@ -136,8 +137,7 @@ I want to be able to score a perfect game and have the app confirm it.
 
 ## Authors
 
-* **Patrick Harris** - Main Author - [TinyGobby](https://github.com/TinyGobby)
-* **Freya** - Idea for User Stories - [fbl11](https://github.com/fbl11)
+**Patrick Harris** - Main Author - [TinyGobby](https://github.com/TinyGobby)
 
 ## License
 
@@ -145,7 +145,8 @@ This project is licensed under the MIT License - see the [MIT.LICENSE](MIT.LICEN
 
 ## Acknowledgments
 
-* [Makers Academy](http://makers.tech/) - Challenge set during week 5 of Makers Apprenticeships course. See below for verbatim original specification:
+* [Makers Academy](http://makers.tech/) - Challenge set during week 5 of Makers Apprenticeships course. See below for verbatim original specification.
+* [Freya](https://github.com/fbl11)([fbl11](https://github.com/fbl11)) - Idea for User Stories -
 ----
 ## The Task
 
