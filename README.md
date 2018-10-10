@@ -60,7 +60,7 @@ Give an example
 
 ### App Structure
 
-The bowling challenge works through a central `Game` object which instatiates and stores each `Frame` object. It controls the flow of the game and checks for bonuses, passing score information to the `Frame` objects.
+The bowling challenge works through a central `Game` object which instantiates and stores each `Frame` object. It controls the flow of the game and checks for bonuses, passing score information to the `Frame` objects.
 
 The `Frame` objects hold scores for each frame and provide error correction.
 
@@ -68,9 +68,7 @@ The `Frame` objects hold scores for each frame and provide error correction.
 
 * Extract bonuses into separate object
 * Break up Game.addScore() into multiple separate functions or objects
-* Refactor game.frames[i].information.get(something) in gameSpec (maybe into a spec helper?)
-* Refactor nested if statement in Game.addScore()
-* Complete logic for 10th frame
+* Extract 10th frame into separate object (with inheritance?)
 
 ### User Stories
 

@@ -23,3 +23,9 @@ Bonus.prototype.isStrike = function () { };
 // if (this._isSpare()) {
 //   this._currentFrame().add('bonusCounter', 1);
 // }
+
+// if (this._isStrike(score)) {
+//   this._currentFrame().add('bonusCounter', 2);
+// } else if (this._isSpare()) {
+//   this._currentFrame().add('bonusCounter', 1);
+// }
