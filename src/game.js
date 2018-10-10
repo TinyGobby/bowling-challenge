@@ -3,27 +3,33 @@ function Game() {
   this._addEmptyFrames();
   this._roll = 'roll1';
   this._frameCounter = 0;
-};
+}
+
+// Break up Game.addScore() into multiple separate functions or objects
+// Extract bonuses into separate object
+// Complete logic for 10th frame
 
 Game.prototype.addScore = function (score) {
   this._currentFrame().add(this._roll, score);
 
+  // Refactor nested if statement in Game.addScore()
   for (let i = 1; i < 3; i++) {
     if (this._isValidFrame(i)) {
       if (this._frameMinus(i).information.get('bonusCounter') > 0) {
         this._frameMinus(i).update('bonus', score);
         this._frameMinus(i).update('bonusCounter', -1);
-      };
-    };
-  };
+      }
+    }
+  }
 
   if (this._isStrike(score)) {
     this._currentFrame().add('bonusCounter', 2);
     this._updateFrame();
     return;
-  } if (this._isSpare()) {
+  }
+  if (this._isSpare()) {
     this._currentFrame().add('bonusCounter', 1);
-  };
+  }
 
   this._updateRoll();
   if (this._roll === 'roll1') this._updateFrame();
@@ -31,18 +37,18 @@ Game.prototype.addScore = function (score) {
 
 Game.prototype.calculateTotal = function () {
   let total = 0;
-  let framesLength = this.frames.length;
+  const framesLength = this.frames.length;
 
   for (let i = 0; i < framesLength; i++) {
     total += this.frames[i].calculateFrameTotal();
-  };
+  }
   return total;
 };
 
 Game.prototype._addEmptyFrames = function () {
   for (let i = 1; i < 11; i++) {
     this.frames.push(new Frame(i));
-  };
+  }
 };
 
 Game.prototype._updateRoll = function () {

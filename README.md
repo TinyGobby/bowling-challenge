@@ -130,6 +130,7 @@ I want to be able to score a perfect game and have the app confirm it.
 
 * [JavaScript](https://developer.mozilla.org/bm/docs/Web/JavaScript) - Logic
 * [HTML](https://www.w3schools.com/html/) - Webpage Layout
+* [CSS](https://www.w3schools.com/css/) - Webpage Styling
 * [JQuery](https://jquery.com/) - Web Framework Used
 * [Jasmine](https://jasmine.github.io/) - Testing Suite
 * [Jasmine-Matchers](https://github.com/JamieMason/Jasmine-Matchers) - Custom Jasmine Matcher Library

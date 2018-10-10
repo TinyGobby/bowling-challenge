@@ -11,6 +11,8 @@ describe('Game', () => {
     });
   });
 
+// Refactor game.frames[i].information.get(something) in gameSpec(maybe into a spec helper ?)
+
   describe('#addScore', () => {
     it('adds a score to a frame', () => {
       game.addScore(1);
