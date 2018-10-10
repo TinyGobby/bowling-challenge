@@ -11,9 +11,12 @@ describe('Game', () => {
     });
   });
 
-// Refactor game.frames[i].information.get(something) in gameSpec(maybe into a spec helper ?)
-
+  //  Refactor game.frames[i].information.get(something) in gameSpec(maybe into a spec helper?)
   describe('#addScore', () => {
+    it('errors if the score is not a number between 0 and 10', function () {
+      expect(function () { game.addScore('test') }).toThrowError('Incorrect input, please give a number between 0 and 10');
+    });
+
     it('adds a score to a frame', () => {
       game.addScore(1);
       expect(game.frames[0].information.get('roll1')).toEqual(1);
@@ -23,6 +26,11 @@ describe('Game', () => {
       game.addScore(1);
       game.addScore(2);
       expect(game.frames[0].information.get('roll2')).toEqual(2);
+    });
+
+    it('errors if the second roll is too high', function () {
+      game.addScore(5);
+      expect(function () { game.addScore(6) }).toThrowError('Second roll too high');
     });
 
     it('automatically changes frame after two rolls', () => {
@@ -90,6 +98,34 @@ describe('Game', () => {
       game.addScore(2);
       game.addScore(3);
       expect(game.calculateTotal()).toEqual(6);
+    });
+  });
+
+  describe('Tenth Frame', () => {
+    beforeEach(() => {
+      for (let i = 0; i < 9; i++) {
+        game.addScore(10);
+      }
+    });
+
+    it('adds a bonus on a spare', () => {
+      game.addScore(9);
+      game.addScore(1);
+      game.addScore(1);
+      expect(game.frames[9].information.get('bonus')).toEqual(1);
+    });
+
+    it('adds a bonus on a strike', () => {
+      game.addScore(10);
+      game.addScore(10);
+      expect(game.frames[9].information.get('roll2')).toEqual(10);
+    });
+
+    it('adds a second bonus on a strike', () => {
+      game.addScore(10);
+      game.addScore(10);
+      game.addScore(10);
+      expect(game.frames[9].information.get('bonus')).toEqual(10);
     });
   });
 });

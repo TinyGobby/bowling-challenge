@@ -1,26 +1,26 @@
-'use strict';
+
 
 // holds frame information and provides error correction
 function Frame(frameNumber) {
   this.information = new Map();
   this._setup(frameNumber);
-};
+}
 
 Frame.prototype.add = function (roll, score) {
-  if(0 > score || score > 10 || isNaN(score)) {
-    throw new Error('Incorrect input, please give a number between 0 and 10');
-  };
-  if(this._isRoll2(roll) && this._isTooHigh(score)) {
-    throw new Error('Second roll too high');
-  };
+  // if(0 > score || score > 10 || isNaN(score)) {
+  //   throw new Error('Incorrect input, please give a number between 0 and 10');
+  // };
+  // if(this._isRoll2(roll) && ((this._getScore('roll1') + score) > 10) {
+  //   throw new Error('Second roll too high');
+  // };
   this.information.set(roll, score);
 };
 
 Frame.prototype.update = function (key, value) {
-  this.information.set(key, (this.information.get(key) + value));
+  this.information.set(key, this.information.get(key) + value);
 };
 
-Frame.prototype.calculateFrameTotal = function() {
+Frame.prototype.calculateFrameTotal = function () {
   let total = 0;
   total += this._getScore('roll1');
   total += this._getScore('roll2');
@@ -45,5 +45,5 @@ Frame.prototype._isRoll2 = function (roll) {
 };
 
 Frame.prototype._isTooHigh = function (score) {
-  return (this._getScore('roll1') + score) > 10
+  return this._getScore('roll1') + score > 10;
 };

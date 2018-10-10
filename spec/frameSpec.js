@@ -25,15 +25,6 @@ describe('Frame', function () {
       frame.add('roll1', 5);
       expect(frame.information.get('roll1')).toEqual(5);
     });
-
-    it('errors if the second roll is too high', function () {
-      frame.add('roll1', 5);
-      expect(function() { frame.add('roll2', 6) } ).toThrowError('Second roll too high');
-    });
-
-    it('errors if the score is not a number between 0 and 10', function () {
-      expect(function() { frame.add('roll1', 'test') } ).toThrowError('Incorrect input, please give a number between 0 and 10');
-    });
   });
 
   describe('#update', function () {
