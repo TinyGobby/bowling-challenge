@@ -1,5 +1,3 @@
-
-
 // holds frame information
 function Frame(frameNumber) {
   this.information = new Map();

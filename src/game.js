@@ -1,3 +1,4 @@
+// Controls game flow and provides error correction
 function Game() {
   this.frames = [];
   this._addEmptyFrames();
@@ -5,9 +6,7 @@ function Game() {
   this._frameCounter = 0;
   this._tenthFrameCounter = 0;
 }
-// Extract bonuses into separate object
-// Break up Game.addScore() into multiple separate functions or objects
-// Extract 10th frame into separate object (with inheritance?)
+
 Game.prototype.check = function (frame, information) {
   return this.frames[frame].information.get(information);
 };
@@ -21,8 +20,8 @@ Game.prototype.addScore = function (score) {
     this._updatePreviousBonus(score);
   }
 
-  if (this._frameCounter == 9) {
-    this._tenthFrame(score);
+  if (this._isTenthFrame()) {
+    this._updateTenthFrame(score);
     return;
   }
 
@@ -35,7 +34,6 @@ Game.prototype.addScore = function (score) {
 
   this._currentFrame().add(this._roll, score);
 
-  // Split into separate bonus object
   if (this._isStrike(score)) {
     this._currentFrame().add('bonusCounter', 2);
     this._updateFrame();
@@ -59,7 +57,7 @@ Game.prototype.calculateTotal = function () {
   return total;
 };
 
-Game.prototype._tenthFrame = function (score) {
+Game.prototype._updateTenthFrame = function (score) {
   this._currentFrame().add(this._roll, score);
 
   if (this._isStrike(score)) {
@@ -81,40 +79,40 @@ Game.prototype._addEmptyFrames = function () {
   }
 };
 
-Game.prototype._updateRoll = function () {
-  this._roll = this._roll === 'roll1' ? 'roll2' : 'roll1';
-};
-
 Game.prototype._currentFrame = function () {
   return this.frames[this._frameCounter];
-};
-
-Game.prototype._updateFrame = function () {
-  this._frameCounter++;
-};
-
-Game.prototype._isSpare = function () {
-  return this._currentFrame().calculateFrameTotal() === 10;
-};
-
-Game.prototype._isStrike = function (score) {
-  return this._roll === 'roll1' && score == 10;
-};
-
-Game.prototype._frameMinus = function (i) {
-  return this.frames[this._frameCounter - i];
-};
-
-Game.prototype._isValidFrame = function (i) {
-  return this._frameCounter - i > -1;
 };
 
 Game.prototype._isIncorrect = function (score) {
   return score < 0 || score > 10 || isNaN(score);
 };
 
+Game.prototype._isStrike = function (score) {
+  return this._roll === 'roll1' && score == 10;
+};
+
+Game.prototype._isSpare = function () {
+  return this._currentFrame().calculateFrameTotal() === 10;
+};
+
+Game.prototype._isTenthFrame = function () {
+  return this._frameCounter === 9;
+};
+
 Game.prototype._isTooHigh = function (score) {
   return this._roll === 'roll2' && this.check(this._frameCounter, 'roll1') + score > 10;
+};
+
+Game.prototype._isValidFrame = function (i) {
+  return this._frameCounter - i > -1;
+};
+
+Game.prototype._updateRoll = function () {
+  this._roll = this._roll === 'roll1' ? 'roll2' : 'roll1';
+};
+
+Game.prototype._updateFrame = function () {
+  this._frameCounter++;
 };
 
 Game.prototype._updatePreviousBonus = function (score) {
@@ -124,4 +122,8 @@ Game.prototype._updatePreviousBonus = function (score) {
       this._frameMinus(i).update('bonusCounter', -1);
     }
   }
+};
+
+Game.prototype._frameMinus = function (i) {
+  return this.frames[this._frameCounter - i];
 };
