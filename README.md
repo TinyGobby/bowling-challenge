@@ -145,7 +145,7 @@ This project is licensed under the MIT License - see the [MIT.LICENSE](MIT.LICEN
 ## Acknowledgments
 
 * [Makers Academy](http://makers.tech/) - Challenge set during week 5 of Makers Apprenticeships course. See below for verbatim original specification.
-* [Freya](https://github.com/fbl11)([fbl11](https://github.com/fbl11)) - Idea for User Stories -
+* [Freya](https://github.com/fbl11)([fbl11](https://github.com/fbl11)) - Idea for User Stories
 ----
 ## The Task
 
